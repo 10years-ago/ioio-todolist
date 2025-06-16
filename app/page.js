@@ -402,7 +402,6 @@ export default function Home() {
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         temDir = [e.clientY < centerY, e.clientX < centerX];
-
         // let temPass = 0;
         if (!hasPlaceholder) {
             if (dragType === "1x2") {
@@ -517,7 +516,7 @@ export default function Home() {
                 if (
                     // 第一行判定
                     (temDir[0] && temImageIndex <= 7) ||
-                    (!temDir[0] && temImageIndex === 0) ||
+                    (!temDir[0] && temDir[1] && temImageIndex === 0) ||
                     // 最后一行判定
                     (!temDir[0] && images.length - temImageIndex <= 7) ||
                     (temDir[0] &&
@@ -721,6 +720,7 @@ export default function Home() {
         setImages([...exampleData]);
         setMaxId(10000);
     };
+
     return (
         <div className="waterfall-container">
             <DragArea setDragType={setDragType} setExample={exampleBtn} />
